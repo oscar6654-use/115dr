@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>115年醫師節頒獎・上台順序核對</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2333; --ink2:#4a5468; --muted:#8a93a6;
+  --bg:#f5f2ea; --card:#fffdf8; --line:#e4ddcc;
+  --navy:#15233f; --gold:#b8892b; --gold2:#f3e4bf;
+  --ok:#2f7d4f; --okbg:#e2f2e7; --stage:#2c5aa0; --stagebg:#e3ecf9;
+  --no:#b23b3b; --nobg:#f8e3e1;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px}
+header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:12px 16px 10px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.toprow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-family:"Noto Serif TC",serif;font-size:20px;margin:0;letter-spacing:.06em;font-weight:900}
+h1 small{display:block;font-family:"Noto Sans TC";font-size:12px;font-weight:500;color:var(--gold2);letter-spacing:.12em;margin-bottom:2px}
+.stats{margin-left:auto;display:flex;gap:6px;font-size:13px}
+.stat{background:rgba(255,255,255,.1);border-radius:8px;padding:4px 9px;white-space:nowrap}
+.stat b{font-size:16px;margin-left:3px}
+.searchrow{display:flex;gap:8px;margin-top:10px}
+#q{flex:1;font-size:18px;padding:10px 14px;border-radius:10px;border:0;background:#fff;color:var(--ink);min-width:0}
+.btn{font:inherit;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;background:#fff;color:var(--navy)}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff}
+nav{position:sticky;top:var(--hh,118px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font:inherit;font-size:15px;font-weight:500;color:var(--ink2);cursor:pointer;white-space:nowrap}
+.chip .n{font-size:12px;color:var(--muted);margin-left:4px}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.chip.on .n{color:var(--gold2)}
+.chip.done{border-color:var(--ok)}
+.chip.done::after{content:" ✓";color:var(--ok);font-weight:900}
+.chip.on.done::after{color:#9fe0b6}
+main{padding:12px 12px 120px;max-width:980px;margin:0 auto}
+.grouphead{display:flex;align-items:baseline;gap:10px;margin:6px 4px 10px}
+.grouphead h2{font-family:"Noto Serif TC",serif;margin:0;font-size:24px;color:var(--navy)}
+.grouphead .sub{color:var(--muted);font-size:14px}
+.grouphead .tools{margin-left:auto;display:flex;gap:6px}
+.mini{font:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--ink2)}
+.mini.on{background:var(--gold2);border-color:var(--gold);color:var(--ink)}
+.card{display:grid;grid-template-columns:64px 1fr auto;gap:4px 14px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-left:6px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:9px;position:relative}
+.card.s1{border-left-color:var(--ok);background:linear-gradient(90deg,var(--okbg),var(--card) 40%)}
+.card.s2{border-left-color:var(--stage);opacity:.62}
+.card.s3{border-left-color:var(--no);background:linear-gradient(90deg,var(--nobg),var(--card) 40%)}
+.card.focus{outline:3px solid var(--gold);outline-offset:2px}
+.no{grid-row:span 2;width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.no small{font-size:10px;color:var(--gold2);margin-bottom:2px;letter-spacing:.1em}
+.no b{font-size:22px;font-weight:900}
+.pos{position:absolute;top:-8px;left:10px;font-size:11px;background:var(--gold);color:#fff;border-radius:6px;padding:1px 6px;font-weight:700}
+.who{min-width:0}
+.name{font-size:26px;font-weight:900;letter-spacing:.04em;line-height:1.15}
+.name .proxy{font-size:15px;font-weight:700;color:#fff;background:#c46a1c;border-radius:6px;padding:2px 7px;margin-left:6px;vertical-align:4px;letter-spacing:0}
+.meta{color:var(--ink2);font-size:15px;margin-top:2px}
+.meta .rank{color:var(--gold);font-weight:700}
+.tags{grid-column:2/4;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:13.5px;border-radius:7px;padding:3px 8px;background:#efeadf;color:var(--ink2)}
+.tag.seat{background:var(--navy);color:#fff;font-weight:700}
+.tag.warn{background:#fdecc8;color:#7a4b00;font-weight:500}
+.tag.rep{background:#ece4fb;color:#4b2f8a;font-weight:500;cursor:pointer}
+.tag.tel{background:#e6f0ee;color:#1f5b4f}
+.acts{display:flex;gap:6px;grid-row:1/2;grid-column:3}
+.act{font:inherit;font-size:15px;font-weight:700;border-radius:10px;border:1.5px solid var(--line);background:#fff;padding:9px 11px;cursor:pointer;color:var(--ink2);min-width:58px}
+.act.a1.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.act.a2.on{background:var(--stage);border-color:var(--stage);color:#fff}
+.act.a3.on{background:var(--no);border-color:var(--no);color:#fff}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+/* bottom bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.06);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;align-items:center}
+.bar .now{flex:1;min-width:0;font-size:15px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .now b{color:var(--navy);font-size:19px}
+.bar .btn{background:var(--navy);color:#fff;padding:12px 18px;font-size:16px}
+.bar .btn.sec{background:#efeadf;color:var(--navy)}
+/* focus mode */
+.modebtn.on{background:var(--gold);color:#fff}
+.fz{max-width:760px;margin:0 auto}
+.fz .lab{font-size:14px;color:var(--muted);letter-spacing:.15em;margin:4px 4px 8px}
+.big{background:var(--card);border:2px solid var(--gold);border-radius:20px;padding:22px 24px;box-shadow:0 8px 24px rgba(184,137,43,.15)}
+.big .award{display:inline-block;background:var(--navy);color:var(--gold2);border-radius:8px;padding:5px 12px;font-size:16px;font-weight:700;margin-bottom:12px}
+.big .row1{display:flex;align-items:center;gap:18px}
+.big .no{width:84px;height:84px;grid-row:auto}.big .no b{font-size:34px}
+.big .name{font-size:46px}
+.big .meta{font-size:18px;margin-top:6px}
+.big .tags{margin-top:14px}.big .tag{font-size:15px;padding:5px 10px}
+.bigacts{display:flex;gap:10px;margin-top:20px}
+.bigacts button{font:inherit;font-weight:900;border:0;border-radius:14px;padding:18px;font-size:20px;cursor:pointer}
+.go{flex:2;background:var(--stage);color:#fff}
+.skip{flex:1;background:var(--nobg);color:var(--no)}
+.undo{flex:1;background:#efeadf;color:var(--navy)}
+.qline{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:7px}
+.qline .k{font-size:13px;color:var(--muted);width:46px}
+.qline .nn{font-weight:900;font-size:20px}
+.qline .sm{color:var(--ink2);font-size:14px}
+.qline .newg{margin-left:auto;font-size:12px;background:var(--gold2);color:#6b4a0b;border-radius:6px;padding:2px 7px}
+.qline.s1{border-left:6px solid var(--ok)}
+/* modal */
+.mask{position:fixed;inset:0;background:rgba(15,20,35,.5);z-index:40;display:none;align-items:center;justify-content:center;padding:20px}
+.mask.show{display:flex}
+.dlg{background:var(--card);border-radius:16px;max-width:420px;width:100%;padding:20px}
+.dlg h3{margin:0 0 8px;font-size:20px}
+.dlg p{color:var(--ink2);margin:0 0 16px;line-height:1.6}
+.dlg .row{display:flex;gap:8px;justify-content:flex-end}
+.legend{font-size:13px;color:var(--muted);margin:0 4px 10px;display:flex;gap:12px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+@media (max-width:640px){
+  .card{grid-template-columns:52px 1fr}
+  .no{width:48px;height:48px}.no b{font-size:19px}
+  .acts{grid-column:1/3;grid-row:auto;order:5}
+  .act{flex:1}
+  .tags{grid-column:1/3}
+  .name{font-size:23px}
+  .stats{width:100%;margin-left:0}
+}
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="toprow">
+    <h1><small>115年醫師節慶祝大會</small>頒獎上台順序核對</h1>
+    <div class="stats">
+      <span class="stat">已排隊<b id="c1">0</b></span>
+      <span class="stat">已上台<b id="c2">0</b></span>
+      <span class="stat">缺席<b id="c3">0</b></span>
+      <span class="stat">共<b id="c0">0</b>人次</span>
+    </div>
+  </div>
+  <div class="searchrow">
+    <input id="q" type="search" placeholder="搜尋姓名、序號、科部…（例：林作舟、45、麻醉）" autocomplete="off">
+    <button class="btn ghost" id="clr">清除</button>
+    <button class="btn ghost modebtn" id="mode">逐位模式</button>
+    <button class="btn ghost" id="reset">重設</button>
+  </div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<div class="bar">
+  <div class="now" id="now"></div>
+  <button class="btn sec" id="prev">◀ 上一組</button>
+  <button class="btn" id="next">下一組 ▶</button>
+</div>
+<div class="mask" id="mask"><div class="dlg">
+  <h3>重設所有勾選？</h3>
+  <p>會清除這台平板上「已排隊／已上台／缺席」的所有紀錄，名單本身不受影響。</p>
+  <div class="row"><button class="mini" id="no">取消</button><button class="mini on" id="yes">確定重設</button></div>
+</div></div>
+<script>
+const DATA = [{"no": 1, "dept": "胃腸科", "name": "張維國", "title": "主治醫師", "award": "資深軍醫服務40年", "tel": "12746", "note": "", "rep": "", "seat": "第4排 6號", "phone_survey": "是"}, {"no": 2, "dept": "眼科部", "name": "呂大文", "title": "主治醫師", "award": "資深軍醫服務40年", "tel": "0938-061120", "note": "", "rep": "", "seat": "第4排 5號", "phone_survey": "是"}, {"no": 3, "dept": "胸腔內科", "name": "黃坤崙", "title": "主治醫師", "award": "資深軍醫服務35年", "tel": "12464", "note": "", "rep": "", "seat": "第4排 4號", "phone_survey": "是"}, {"no": 4, "dept": "血液腫瘤科", "name": "陳宇欽", "title": "主治醫師", "award": "資深軍醫服務35年", "tel": "13654", "note": "", "rep": "重覆領獎2次", "seat": "第3排 12號", "phone_survey": "是"}, {"no": 5, "dept": "骨科部", "name": "潘如瑜", "title": "主治醫師", "award": "資深軍醫服務35年", "tel": "12736", "note": "", "rep": "", "seat": "第4排 3號", "phone_survey": "是"}, {"no": 6, "dept": "骨科部", "name": "葉祖德", "title": "主治醫師", "award": "資深軍醫服務30年", "tel": "13517", "note": "", "rep": "", "seat": "第4排 2號", "phone_survey": "是"}, {"no": 7, "dept": "麻醉科部", "name": "林作舟", "title": "主治醫師", "award": "資深軍醫服務30年", "tel": "12907", "note": "", "rep": "重覆領獎2次", "seat": "第4排 12號", "phone_survey": "是"}, {"no": 8, "dept": "院本部", "name": "王毓淇", "title": "主治醫師", "award": "資深軍醫服務25年", "tel": "", "note": "姿君已on行程貴賓席", "rep": "", "seat": "第1排 9號", "phone_survey": "是"}, {"no": 9, "dept": "風濕免疫過敏科", "name": "劉峰誠", "title": "主治醫師", "award": "資深軍醫服務25年", "tel": "12588", "note": "", "rep": "", "seat": "第4排 1號", "phone_survey": "是"}, {"no": 10, "dept": "心臟內科", "name": "蔡宗能", "title": "主治醫師", "award": "資深軍醫服務25年", "tel": "12406", "note": "", "rep": "", "seat": "第4排 7號", "phone_survey": "是"}, {"no": 11, "dept": "神經科部", "name": "宋岳峰", "title": "主治醫師", "award": "資深軍醫服務25年", "tel": "12824", "note": "", "rep": "", "seat": "第4排 8號", "phone_survey": "是"}, {"no": 12, "dept": "耳鼻喉部", "name": "陳信傑", "title": "主治醫師", "award": "資深軍醫服務25年", "tel": "13357", "note": "", "rep": "", "seat": "第4排 9號", "phone_survey": "是"}, {"no": 13, "dept": "腎臟內科", "name": "宋志建", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12729", "note": "看診，不出席彩排", "rep": "", "seat": "第4排 10號", "phone_survey": "是"}, {"no": 14, "dept": "感染及熱帶醫學科", "name": "王永志", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "13505", "note": "", "rep": "", "seat": "第5排 6號", "phone_survey": "是"}, {"no": 15, "dept": "胃腸科", "name": "黃瑋琛", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12389", "note": "", "rep": "重覆領獎2次", "seat": "第4排 11號", "phone_survey": "是"}, {"no": 16, "dept": "心臟內科", "name": "蔡維哲", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12927", "note": "", "rep": "", "seat": "第5排 5號", "phone_survey": "是"}, {"no": 17, "dept": "血液腫瘤科", "name": "陳佳宏", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12903", "note": "", "rep": "重覆領獎2次", "seat": "第5排 12號", "phone_survey": "是"}, {"no": 18, "dept": "泌尿外科", "name": "楊明昕", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12355", "note": "", "rep": "", "seat": "第5排 4號", "phone_survey": "是"}, {"no": 19, "dept": "胸腔外科", "name": "吳悌暉", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12474", "note": "", "rep": "", "seat": "第5排 3號", "phone_survey": "是"}, {"no": 20, "dept": "小兒科部", "name": "王富民", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "24171", "note": "", "rep": "", "seat": "第5排 2號", "phone_survey": "是"}, {"no": 21, "dept": "婦產部", "name": "林宜欣", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "34955", "note": "", "rep": "", "seat": "第5排 1號", "phone_survey": "是"}, {"no": 22, "dept": "骨科部", "name": "王聖豪", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "13438", "note": "", "rep": "", "seat": "第5排 7號", "phone_survey": "是"}, {"no": 23, "dept": "耳鼻喉部", "name": "鄭立享", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12920", "note": "", "rep": "", "seat": "第5排 8號", "phone_survey": "是"}, {"no": 24, "dept": "眼科部", "name": "簡克鴻", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "13464", "note": "但預演會晚點到", "rep": "", "seat": "第5排 9號", "phone_survey": "是"}, {"no": 25, "dept": "麻醉科部", "name": "洪楠凱", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12661", "note": "", "rep": "", "seat": "第5排 10號", "phone_survey": "是"}, {"no": 26, "dept": "麻醉科部", "name": "陳佳琳", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "13593", "note": "", "rep": "", "seat": "第6排 6號", "phone_survey": "是"}, {"no": 27, "dept": "放射腫瘤部", "name": "黃文彥", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "13512", "note": "但預演會晚點到", "rep": "重覆領獎2次", "seat": "第5排 11號", "phone_survey": "是"}, {"no": 28, "dept": "臨床病理科", "name": "楊秉恆", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12506", "note": "", "rep": "", "seat": "第6排 5號", "phone_survey": "是"}, {"no": 29, "dept": "急診部", "name": "廖文翊", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12431", "note": "", "rep": "", "seat": "第6排 4號", "phone_survey": "是"}, {"no": 30, "dept": "牙科部", "name": "莊傳宗", "title": "主治醫師", "award": "資深軍醫服務20年", "tel": "12896", "note": "", "rep": "", "seat": "第6排 3號", "phone_survey": "是"}, {"no": 31, "dept": "放射腫瘤部", "name": "蘇瑜富", "title": "主治醫師", "award": "本院優良軍醫", "tel": "12550", "note": "", "rep": "", "seat": "第6排 2號", "phone_survey": "是"}, {"no": 32, "dept": "放射診斷部", "name": "周本林", "title": "放射技術官", "award": "本院優良軍醫", "tel": "34000", "note": "", "rep": "", "seat": "第6排 1號", "phone_survey": "是"}, {"no": 33, "dept": "醫務企劃管理部醫勤室", "name": "黃駿煌", "title": "主任", "award": "本院優良軍醫", "tel": "12634", "note": "", "rep": "", "seat": "第6排 7號", "phone_survey": "是"}, {"no": 34, "dept": "心臟血管外科", "name": "劉建廷", "title": "主治醫師", "award": "本院優良軍醫", "tel": "13680", "note": "", "rep": "", "seat": "第6排 8號", "phone_survey": "是"}, {"no": 35, "dept": "急診部", "name": "蔡宜達", "title": "主治醫師", "award": "本院優良軍醫", "tel": "13656", "note": "", "rep": "", "seat": "第6排 9號", "phone_survey": "是"}, {"no": 36, "dept": "耳鼻喉部", "name": "施政坪", "title": "主治醫師", "award": "本院優良軍醫", "tel": "12855", "note": "開刀 9:00才能到，預演無法到", "rep": "", "seat": "第6排 10號", "phone_survey": "是"}, {"no": 37, "dept": "醫材管理部", "name": "林立偉", "title": "衛材行政補給官", "award": "本院優良軍醫", "tel": "17164", "note": "", "rep": "", "seat": "第7排 6號", "phone_survey": "是"}, {"no": 38, "dept": "家庭醫學部", "name": "吳立偉", "title": "主治醫師", "award": "本院優良軍醫", "tel": "12618", "note": "", "rep": "", "seat": "第7排 5號", "phone_survey": "是"}, {"no": 39, "dept": "內分泌及新陳代謝科", "name": "呂介華", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "13493", "note": "", "rep": "重覆領獎2次", "seat": "第6排 12號", "phone_survey": "是"}, {"no": 40, "dept": "血液腫瘤科", "name": "陳宇欽", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "13654", "note": "", "rep": "重覆領獎2次", "seat": "第3排 12號", "phone_survey": "是"}, {"no": 41, "dept": "胸腔內科", "name": "劉佳鑫", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "13817", "note": "", "rep": "", "seat": "第7排 4號", "phone_survey": "是"}, {"no": 42, "dept": "心臟內科", "name": "許志雄", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "13487", "note": "", "rep": "", "seat": "第7排 3號", "phone_survey": "是"}, {"no": 43, "dept": "麻醉科部", "name": "黃貽暄", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "12775", "note": "", "rep": "", "seat": "第7排 2號", "phone_survey": "是"}, {"no": 44, "dept": "麻醉科部", "name": "賴厚全", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "12446", "note": "", "rep": "重覆領獎2次", "seat": "第6排 11號", "phone_survey": "是"}, {"no": 45, "dept": "麻醉科部", "name": "林作舟", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "12907", "note": "", "rep": "重覆領獎2次", "seat": "第4排 12號", "phone_survey": "是"}, {"no": 46, "dept": "大腸直腸外科", "name": "温家政", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "34116", "note": "", "rep": "", "seat": "第7排 1號", "phone_survey": "是"}, {"no": 47, "dept": "臨床病理科", "name": "林信仲", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "12628", "note": "", "rep": "", "seat": "第7排 7號", "phone_survey": "是"}, {"no": 48, "dept": "皮膚科部", "name": "江建平", "title": "主治醫師", "award": "優良臨床教學主治醫師", "tel": "12627", "note": "", "rep": "", "seat": "第7排 8號", "phone_survey": "是"}, {"no": 49, "dept": "內科部", "name": "陳泱全", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "13779", "note": "心臟內科", "rep": "", "seat": "第7排 9號", "phone_survey": "是"}, {"no": 50, "dept": "精神醫學部", "name": "楊筑雅", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12751", "note": "", "rep": "", "seat": "第7排 10號", "phone_survey": "是"}, {"no": 51, "dept": "內科部", "name": "陳彥辰", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "13531", "note": "", "rep": "", "seat": "第8排 6號", "phone_survey": "是"}, {"no": 52, "dept": "神經科部", "name": "尹鐘堯", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12448", "note": "", "rep": "", "seat": "第8排 5號", "phone_survey": "是"}, {"no": 53, "dept": "精神醫學部", "name": "王淳弘", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12354", "note": "", "rep": "", "seat": "第8排 4號", "phone_survey": "是"}, {"no": 54, "dept": "胸腔外科", "name": "江秉翰", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12680", "note": "", "rep": "", "seat": "第8排 3號", "phone_survey": "是"}, {"no": 55, "dept": "整形外科", "name": "楊世唯", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12652", "note": "", "rep": "", "seat": "第8排 2號", "phone_survey": "是"}, {"no": 56, "dept": "大腸直腸外科", "name": "許富傑", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12787", "note": "", "rep": "", "seat": "第8排 1號", "phone_survey": "是"}, {"no": 57, "dept": "麻醉科部", "name": "陳瑾瑜", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "12476", "note": "", "rep": "", "seat": "第8排 7號", "phone_survey": "是"}, {"no": 58, "dept": "胸腔外科", "name": "賴奕翔", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "13347", "note": "", "rep": "", "seat": "第8排 8號", "phone_survey": "是"}, {"no": 59, "dept": "復健醫學部", "name": "陳明澤", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "24126", "note": "", "rep": "", "seat": "第8排 9號", "phone_survey": "是"}, {"no": 60, "dept": "中醫部", "name": "鄭羽婷", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "24188", "note": "", "rep": "", "seat": "第8排 10號", "phone_survey": "是"}, {"no": 61, "dept": "耳鼻喉部", "name": "徐唯倫", "title": "住院醫師", "award": "優良臨床教學住院醫師", "tel": "13677", "note": "", "rep": "", "seat": "第8排 11號", "phone_survey": "是"}, {"no": 62, "dept": "病理部臨床病理科", "name": "商弘昇", "title": "主治醫師", "award": "優良研究論著團體績效獎第一名", "tel": "13556", "note": "", "rep": "重覆領獎2次", "seat": "第7排 12號", "phone_survey": "是"}, {"no": 63, "dept": "皮膚科部", "name": "洪誌聰", "title": "部主任", "award": "優良研究論著團體績效獎第二名", "tel": "13408", "note": "", "rep": "重覆領獎3次", "seat": "第7排 11號", "phone_survey": "是"}, {"no": 64, "dept": "精神醫學部", "name": "張傳佳", "title": "部主任", "award": "優良研究論著團體績效獎第三名", "tel": "13624", "note": "", "rep": "", "seat": "第9排 6號", "phone_survey": "是"}, {"no": 65, "dept": "血液腫瘤科", "name": "陳佳宏", "title": "科主任", "award": "優良研究論著團體績效獎第四名", "tel": "12903", "note": "", "rep": "重覆領獎2次", "seat": "第5排 12號", "phone_survey": "是"}, {"no": 66, "dept": "內分泌及新陳代謝科", "name": "郭俸志", "title": "主治醫師", "award": "優良研究論著團體績效獎第五名", "tel": "12687", "note": "", "rep": "", "seat": "第9排 5號", "phone_survey": "是"}, {"no": 67, "dept": "醫學研究部", "name": "簡戊鑑", "title": "系統分析師", "award": "優良研究論著個人績效獎第一名", "tel": "34100", "note": "", "rep": "", "seat": "第9排 4號", "phone_survey": "是"}, {"no": 68, "dept": "血液腫瘤科", "name": "陳柏瑝", "title": "住院醫師", "award": "優良研究論著個人績效獎第二名", "tel": "13782", "note": "", "rep": "", "seat": "第9排 3號", "phone_survey": "尚在聯絡中"}, {"no": 69, "dept": "病理部臨床病理科", "name": "商弘昇", "title": "主治醫師", "award": "優良研究論著個人績效獎第三名", "tel": "13556", "note": "", "rep": "重覆領獎2次", "seat": "第7排 12號", "phone_survey": "是"}, {"no": 70, "dept": "精神醫學部", "name": "張勳安", "title": "主治醫師", "award": "優良研究論著個人績效獎第四名", "tel": "13358", "note": "", "rep": "", "seat": "第9排 2號", "phone_survey": "是"}, {"no": 71, "dept": "胃腸科", "name": "黃瑋琛", "title": "主治醫師", "award": "論文引用次數評比第一名", "tel": "12389", "note": "", "rep": "重覆領獎2次", "seat": "第4排 11號", "phone_survey": "是"}, {"no": 72, "dept": "病理部", "name": "趙載光", "title": "主治醫師", "award": "論文引用次數評比第二名", "tel": "12456", "note": "", "rep": "", "seat": "第9排 1號", "phone_survey": "是"}, {"no": 73, "dept": "病理部臨床病理科", "name": "鍾欣怡", "title": "醫檢師", "award": "論文引用次數評比第三名", "tel": "88121", "note": "", "rep": "重覆領獎2次", "seat": "第8排 12號", "phone_survey": "是"}, {"no": 74, "dept": "病理部臨床病理科", "name": "商弘昇(陳揚叡代)", "title": "主治醫師", "award": "論文引用次數評比第三名", "tel": "790193", "note": "陳揚叡醫師代領", "rep": "", "seat": "第9排 7號", "phone_survey": "是"}, {"no": 75, "dept": "皮膚科部", "name": "洪誌聰", "title": "主治醫師", "award": "論文引用次數評比第四名", "tel": "13408", "note": "", "rep": "重覆領獎3次", "seat": "第7排 11號", "phone_survey": "是"}, {"no": 76, "dept": "神經科部", "name": "蔡佳光", "title": "主治醫師", "award": "論文引用次數評比第五名", "tel": "12860", "note": "", "rep": "", "seat": "第9排 8號", "phone_survey": "是"}, {"no": 77, "dept": "皮膚科部", "name": "劉昇雯", "title": "主治醫師", "award": "年輕主治醫師優良著作獎第一名", "tel": "13414", "note": "", "rep": "", "seat": "第9排 9號", "phone_survey": "是"}, {"no": 78, "dept": "心臟內科", "name": "劉威廷", "title": "主治醫師", "award": "年輕主治醫師優良著作獎第三名", "tel": "13833", "note": "", "rep": "", "seat": "第9排 10號", "phone_survey": "是"}, {"no": 79, "dept": "臨床病理科", "name": "林泰瀚(黎嘉君代)", "title": "住院醫師", "award": "住院醫師優良著作獎第一名", "tel": "12351", "note": "黎嘉君醫師代領", "rep": "", "seat": "第9排 11號", "phone_survey": "是"}, {"no": 80, "dept": "眼科部", "name": "顏瑋廷", "title": "住院醫師", "award": "住院醫師優良著作獎第二名", "tel": "12633", "note": "", "rep": "", "seat": "第9排 12號", "phone_survey": "是"}, {"no": 81, "dept": "精神醫學部", "name": "陳婉亭", "title": "住院醫師", "award": "住院醫師優良著作獎第三名", "tel": "12636", "note": "", "rep": "", "seat": "第10排 6號", "phone_survey": "是"}, {"no": 82, "dept": "病理部臨床病理科", "name": "鍾欣怡", "title": "醫檢師", "award": "醫事人員優良著作獎第一名", "tel": "88121", "note": "", "rep": "重覆領獎2次", "seat": "第8排 12號", "phone_survey": "是"}, {"no": 83, "dept": "精準醫學暨基因體中心", "name": "施靖瑜", "title": "醫檢師", "award": "醫事人員優良著作獎第二名", "tel": "17719", "note": "", "rep": "", "seat": "第10排 5號", "phone_survey": "是"}, {"no": 84, "dept": "護理部", "name": "王蔚芸", "title": "護理師", "award": "醫事人員優良著作獎第三名", "tel": "17361/24155", "note": "", "rep": "", "seat": "第10排 4號", "phone_survey": "是"}, {"no": 85, "dept": "醫學研究部", "name": "翁子璇", "title": "資料分析員", "award": "年輕醫事人員優良著作獎第一名", "tel": "764849", "note": "簡戊鑑34100教官轉達", "rep": "", "seat": "第10排 3號", "phone_survey": "是"}, {"no": 86, "dept": "護理部", "name": "馬景圓", "title": "護理師", "award": "年輕醫事人員優良著作獎第二名", "tel": "公務機:734727 手機:0977480948", "note": "", "rep": "", "seat": "第10排 2號", "phone_survey": "是"}, {"no": 87, "dept": "臨床藥學部", "name": "陳姿穎", "title": "藥師", "award": "年輕醫事人員優良著作獎第二名", "tel": "774299　/0926335416", "note": "", "rep": "", "seat": "第10排 1號", "phone_survey": "是"}, {"no": 88, "dept": "神經科部", "name": "楊富吉", "title": "部主任", "award": "服務績效績優獎", "tel": "13597", "note": "", "rep": "", "seat": "第10排 7號", "phone_survey": "是"}, {"no": 89, "dept": "內分泌及新陳代謝科", "name": "呂介華", "title": "主治醫師", "award": "服務績效績優獎", "tel": "13493", "note": "", "rep": "重覆領獎2次", "seat": "第6排 12號", "phone_survey": "是"}, {"no": 90, "dept": "麻醉科部", "name": "賴厚全", "title": "部主任", "award": "服務績效績優獎", "tel": "12446", "note": "", "rep": "重覆領獎2次", "seat": "第6排 11號", "phone_survey": "是"}, {"no": 91, "dept": "心臟血管外科", "name": "楊翔宇", "title": "科主任", "award": "服務績效績優獎", "tel": "12870", "note": "", "rep": "", "seat": "第10排 8號", "phone_survey": "是"}, {"no": 92, "dept": "核子醫學部", "name": "邱創新", "title": "部主任", "award": "服務績效績優獎", "tel": "13519", "note": "", "rep": "", "seat": "第10排 9號", "phone_survey": "是"}, {"no": 93, "dept": "放射腫瘤部", "name": "黃文彥", "title": "部主任", "award": "服務績效績優獎", "tel": "13512", "note": "", "rep": "重覆領獎2次", "seat": "第5排 11號", "phone_survey": "是"}, {"no": 94, "dept": "家庭暨社區醫學部", "name": "方文輝", "title": "主任", "award": "進步卓著績優獎", "tel": "12322", "note": "", "rep": "", "seat": "第10排 10號", "phone_survey": "是"}, {"no": 95, "dept": "感染及熱帶醫學科", "name": "林德宇", "title": "科主任", "award": "進步卓著績優獎", "tel": "12421", "note": "", "rep": "", "seat": "第10排 11號", "phone_survey": "是"}, {"no": 96, "dept": "大腸直腸外科", "name": "張筆凱", "title": "主任", "award": "進步卓著績優獎", "tel": "12382", "note": "", "rep": "", "seat": "第10排 12號", "phone_survey": "是"}, {"no": 97, "dept": "創傷醫學科", "name": "張哲銜", "title": "GICU專責主治", "award": "進步卓著績優獎", "tel": "13742", "note": "", "rep": "", "seat": "第11排 6號", "phone_survey": "是"}, {"no": 98, "dept": "皮膚科部", "name": "洪誌聰", "title": "部主任", "award": "進步卓著績優獎", "tel": "13408", "note": "", "rep": "重覆領獎3次", "seat": "第7排 11號", "phone_survey": "是"}, {"no": 99, "dept": "牙科部", "name": "洪心柔", "title": "總醫師", "award": "進步卓著績優獎", "tel": "24086", "note": "", "rep": "", "seat": "第11排 5號", "phone_survey": "是"}];
+const KEY='tsgh115-award-check';
+let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const base=n=>n.replace(/\(.*$/,'');
+const grpName=a=>a.replace(/第[一二三四五六七八九十]+名$/,'');
+const rankOf=a=>{const m=a.match(/第[一二三四五六七八九十]+名$/);return m?m[0]:''};
+// groups in list order
+const groups=[];const gIdx={};
+DATA.forEach(d=>{const g=grpName(d.award);if(!(g in gIdx)){gIdx[g]=groups.length;groups.push({name:g,items:[]})}groups[gIdx[g]].items.push(d);d.g=gIdx[g]});
+// repeats by base name (proxy collections stay separate)
+const byName={};DATA.forEach(d=>{if(d.name.includes('代'))return;(byName[d.name]=byName[d.name]||[]).push(d)});
+let cur=0;try{cur=+(localStorage.getItem(KEY+'-g')||0)}catch(e){}
+let onlyTodo=false;let q='';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function setH(){document.documentElement.style.setProperty('--hh',$('#hdr').offsetHeight+'px')}
+function counts(){let c=[0,0,0,0];DATA.forEach(d=>{c[st[d.no]||0]++});$('#c1').textContent=c[1];$('#c2').textContent=c[2];$('#c3').textContent=c[3];$('#c0').textContent=DATA.length}
+function gDone(g){return g.items.every(d=>st[d.no]===2||st[d.no]===3)}
+function renderNav(){
+  $('#nav').innerHTML=groups.map((g,i)=>`<button class="chip ${i===cur&&!q?'on':''} ${gDone(g)?'done':''}" data-g="${i}">${esc(g.name)}<span class="n">${g.items.length}</span></button>`).join('');
+  const on=$('#nav .chip.on');if(on)on.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+}
+function card(d,pos){
+  const s=st[d.no]||0;
+  const m=d.name.match(/^(.*?)\((.*?)代\)?$/);
+  const nm=m?`${esc(m[1])}<span class="proxy">${esc(m[2])} 代領</span>`:esc(d.name);
+  const tags=[];
+  tags.push(`<span class="tag seat">💺 ${esc(d.seat||'座位未定')}</span>`);
+  const others=(byName[d.name]||[]).filter(x=>x.no!==d.no);
+  if(others.length)tags.push(`<span class="tag rep" data-jump="${others[0].no}">🔁 另領：${others.map(x=>'#'+x.no+' '+esc(grpName(x.award))+rankOf(x.award)).join('、')}</span>`);
+  if(d.note && !m)tags.push(`<span class="tag warn">⚠ ${esc(d.note)}</span>`);
+  if(d.phone_survey && d.phone_survey!=='是')tags.push(`<span class="tag warn">☎ 出席：${esc(d.phone_survey)}</span>`);
+  if(d.tel)tags.push(`<span class="tag tel">☏ ${esc(d.tel)}</span>`);
+  return `<div class="card s${s}" id="p${d.no}">
+    ${pos?`<span class="pos">本組第 ${pos} 位</span>`:''}
+    <div class="no"><small>序號</small><b>${d.no}</b></div>
+    <div class="who"><div class="name">${nm}</div>
+      <div class="meta">${esc(d.dept)}・${esc(d.title)}${rankOf(d.award)?`・<span class="rank">${rankOf(d.award)}</span>`:''}${q?`・${esc(grpName(d.award))}`:''}</div></div>
+    <div class="acts">
+      <button class="act a1 ${s===1?'on':''}" data-no="${d.no}" data-s="1">排隊</button>
+      <button class="act a2 ${s===2?'on':''}" data-no="${d.no}" data-s="2">上台</button>
+      <button class="act a3 ${s===3?'on':''}" data-no="${d.no}" data-s="3">缺席</button>
+    </div>
+    <div class="tags">${tags.join('')}</div>
+  </div>`;
+}
+let focus=false;try{focus=localStorage.getItem(KEY+'-m')==='1'}catch(e){}
+const hist=[];
+function renderFocus(){
+  const pend=DATA.filter(d=>!(st[d.no]===2||st[d.no]===3));
+  const c=pend[0];
+  $('#nav').style.display='none';
+  let h='<div class="fz">';
+  if(!c){h+='<div class="empty" style="font-size:22px">全部頒獎完成 🎉</div>';}
+  else{
+    const g=groups[c.g];const pos=g.items.indexOf(c)+1;
+    const m=c.name.match(/^(.*?)\((.*?)代\)?$/);
+    const nm=m?`${esc(m[1])}<span class="proxy">${esc(m[2])} 代領</span>`:esc(c.name);
+    const others=(byName[c.name]||[]).filter(x=>x.no!==c.no);
+    const tags=[`<span class="tag seat">💺 ${esc(c.seat)}</span>`];
+    if(others.length)tags.push(`<span class="tag rep">🔁 另領：${others.map(x=>'#'+x.no+' '+esc(grpName(x.award))+rankOf(x.award)).join('、')}</span>`);
+    if(c.note&&!m)tags.push(`<span class="tag warn">⚠ ${esc(c.note)}</span>`);
+    if(c.phone_survey&&c.phone_survey!=='是')tags.push(`<span class="tag warn">☎ 出席：${esc(c.phone_survey)}</span>`);
+    if(c.tel)tags.push(`<span class="tag tel">☏ ${esc(c.tel)}</span>`);
+    h+=`<div class="lab">現在上台</div><div class="big">
+      <span class="award">${esc(g.name)}${rankOf(c.award)?' '+rankOf(c.award):''}・本組 ${pos}/${g.items.length}</span>
+      <div class="row1"><div class="no"><small>序號</small><b>${c.no}</b></div>
+      <div><div class="name">${nm}</div><div class="meta">${esc(c.dept)}・${esc(c.title)}</div></div></div>
+      <div class="tags">${tags.join('')}</div>
+      <div class="bigacts"><button class="undo" id="fundo" ${hist.length?'':'disabled style="opacity:.4"'}>↶ 上一位</button><button class="skip" id="fskip">缺席跳過</button><button class="go" id="fgo">已上台 ✓ 下一位</button></div>
+    </div>`;
+    h+='<div class="lab" style="margin-top:20px">接下來（請確認排隊順序）</div>';
+    pend.slice(1,7).forEach((d,i)=>{const ng=d.g!==(i?pend[i].g:c.g);
+      h+=`<div class="qline s${st[d.no]||0}"><span class="k">第${i+2}位</span><span class="no" style="width:40px;height:40px;grid-row:auto"><b style="font-size:16px">${d.no}</b></span><div><div class="nn">${esc(d.name)}</div><div class="sm">${esc(d.dept)}・${esc(d.seat)}</div></div>${ng?`<span class="newg">換獎：${esc(grpName(d.award))}</span>`:''}</div>`});
+  }
+  h+='</div>';
+  $('#main').innerHTML=h;
+  $('#now').innerHTML=`已上台 <b>${DATA.filter(d=>st[d.no]===2).length}</b> / ${DATA.length}・剩 ${pend.length} 位`;
+  $('#prev').style.display=$('#next').style.display='none';
+}
+function render(){
+  $('#mode').classList.toggle('on',focus);$('#mode').textContent=focus?'名單模式':'逐位模式';
+  counts();
+  if(focus&&!q){renderFocus();return}
+  $('#nav').style.display='';$('#prev').style.display=$('#next').style.display='';
+  renderNav();
+  let html='';
+  if(q){
+    const k=q.trim();
+    const list=DATA.filter(d=>String(d.no)===k||d.name.includes(k)||d.dept.includes(k)||d.award.includes(k)||(d.note||'').includes(k));
+    html=`<div class="grouphead"><h2>搜尋「${esc(k)}」</h2><span class="sub">${list.length} 筆</span></div>`+(list.length?list.map(d=>card(d)).join(''):'<div class="empty">查無此人，請確認姓名或序號</div>');
+    $('#now').innerHTML='搜尋中・點卡片上的序號可回到所屬組別';
+  }else{
+    const g=groups[cur];
+    let items=g.items.map((d,i)=>[d,i+1]);
+    if(onlyTodo)items=items.filter(([d])=>!(st[d.no]===2||st[d.no]===3));
+    const first=g.items[0].no,last=g.items[g.items.length-1].no;
+    html=`<div class="grouphead"><h2>${esc(g.name)}</h2><span class="sub">第 ${cur+1}/${groups.length} 組・序號 ${first}${first!==last?'–'+last:''}・${g.items.length} 人</span>
+      <div class="tools"><button class="mini ${onlyTodo?'on':''}" id="todo">只看未上台</button><button class="mini" id="allq">全組已排隊</button></div></div>
+      <div class="legend"><span><i style="background:var(--ok)"></i>已排隊（順序正確）</span><span><i style="background:var(--stage)"></i>已上台</span><span><i style="background:var(--no)"></i>缺席</span></div>`+
+      (items.length?items.map(([d,p])=>card(d,p)).join(''):'<div class="empty">本組都處理完了 🎉 按「下一組」繼續</div>');
+    const nextP=g.items.find(d=>!st[d.no]||st[d.no]===1);
+    const ng=groups[cur+1];
+    $('#now').innerHTML=nextP?`下一位上台：<b>#${nextP.no} ${esc(nextP.name)}</b>`:(ng?`本組完成 → 下一組：<b>${esc(ng.name)}</b>`:'<b>全部頒獎完成 🎉</b>');
+  }
+  $('#main').innerHTML=html;
+  $('#prev').disabled=!!q||cur===0;$('#next').disabled=!!q||cur===groups.length-1;
+  $('#prev').style.opacity=$('#prev').disabled?.4:1;$('#next').style.opacity=$('#next').disabled?.4:1;
+}
+function go(i,focusNo){cur=Math.max(0,Math.min(groups.length-1,i));try{localStorage.setItem(KEY+'-g',cur)}catch(e){}
+  q='';$('#q').value='';render();
+  if(focusNo){const el=document.getElementById('p'+focusNo);if(el){el.classList.add('focus');el.scrollIntoView({block:'center',behavior:'smooth'});setTimeout(()=>el.classList.remove('focus'),2200)}}
+  else window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('.act');
+  if(a){const no=+a.dataset.no,s=+a.dataset.s;st[no]=(st[no]===s)?0:s;if(!st[no])delete st[no];save();
+    const y=window.scrollY;render();window.scrollTo(0,y);return}
+  const c=e.target.closest('.chip');if(c){go(+c.dataset.g);return}
+  const j=e.target.closest('[data-jump]');if(j){const d=DATA.find(x=>x.no===+j.dataset.jump);go(d.g,d.no);return}
+  const n=e.target.closest('.no');if(n&&q){const no=+n.querySelector('b').textContent;const d=DATA.find(x=>x.no===no);go(d.g,no);return}
+  if(e.target.id==='fgo'||e.target.id==='fskip'){const c=DATA.find(d=>!(st[d.no]===2||st[d.no]===3));if(c){hist.push([c.no,st[c.no]||0]);st[c.no]=e.target.id==='fgo'?2:3;save();render();window.scrollTo(0,0)}return}
+  if(e.target.id==='fundo'){const h=hist.pop();if(h){if(h[1])st[h[0]]=h[1];else delete st[h[0]];save();render()}return}
+  if(e.target.id==='todo'){onlyTodo=!onlyTodo;render();return}
+  if(e.target.id==='allq'){groups[cur].items.forEach(d=>{if(!st[d.no])st[d.no]=1});save();render();return}
+});
+$('#q').addEventListener('input',e=>{q=e.target.value.trim();render()});
+$('#clr').onclick=()=>{q='';$('#q').value='';render()};
+$('#prev').onclick=()=>go(cur-1);$('#next').onclick=()=>go(cur+1);
+$('#mode').onclick=()=>{focus=!focus;try{localStorage.setItem(KEY+'-m',focus?'1':'0')}catch(e){}q='';$('#q').value='';render();window.scrollTo(0,0)};
+$('#reset').onclick=()=>$('#mask').classList.add('show');
+$('#no').onclick=()=>$('#mask').classList.remove('show');
+$('#yes').onclick=()=>{st={};save();$('#mask').classList.remove('show');render()};
+window.addEventListener('resize',setH);setH();render();
+</script>
+</body>
+</html>
